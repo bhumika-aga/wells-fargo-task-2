@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Security {
@@ -27,6 +28,9 @@ public class Security {
 
     @Column(nullable = false)
     private int quantity;
+
+    @ManyToOne
+    private Portfolio portfolio;
 
     public long getSecurityId() {
         return securityId;
@@ -72,14 +76,24 @@ public class Security {
         this.quantity = quantity;
     }
 
+    public Portfolio getPortfolio() {
+        return portfolio;
+    }
+
+    public void setPortfolio(Portfolio portfolio) {
+        this.portfolio = portfolio;
+    }
+
     protected Security() {
     }
 
-    public Security(String name, String category, String purchasePrice, String purchaseDate, int quantity) {
+    public Security(String name, String category, String purchasePrice, String purchaseDate, int quantity,
+            Portfolio portfolio) {
         this.name = name;
         this.category = category;
         this.purchasePrice = purchasePrice;
         this.purchaseDate = purchaseDate;
         this.quantity = quantity;
+        this.portfolio = portfolio;
     }
 }

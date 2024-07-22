@@ -1,13 +1,11 @@
 package com.wellsfargo.counselor.entity;
 
-import java.util.List;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Client {
@@ -31,20 +29,20 @@ public class Client {
     @Column(nullable = false)
     private String email;
 
-    @OneToMany
-    private List<Portfolio> portfolios;
+    @ManyToOne
+    private Advisor advisor;
 
     protected Client() {
     }
 
     public Client(String firstName, String lastName, String address, String phone, String email,
-            List<Portfolio> portfolios) {
+            Advisor advisor) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
         this.phone = phone;
         this.email = email;
-        this.portfolios = portfolios;
+        this.advisor = advisor;
     }
 
     public long getClientId() {
@@ -91,12 +89,11 @@ public class Client {
         this.email = email;
     }
 
-    public List<Portfolio> getPortfolios() {
-        return portfolios;
+    public Advisor getAdvisor() {
+        return advisor;
     }
 
-    public void setPortfolios(List<Portfolio> portfolios) {
-        this.portfolios = portfolios;
+    public void setAdvisor(Advisor advisor) {
+        this.advisor = advisor;
     }
-
 }

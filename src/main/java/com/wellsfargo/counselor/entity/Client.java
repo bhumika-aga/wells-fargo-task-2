@@ -10,11 +10,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
 @Entity
-public class Advisor {
+public class Client {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long advisorId;
+    private long clientId;
 
     @Column(nullable = false)
     private String firstName;
@@ -32,72 +32,71 @@ public class Advisor {
     private String email;
 
     @OneToMany
-    private List<Client> clients;
+    private List<Portfolio> portfolios;
 
-    protected Advisor() {
-
+    protected Client() {
     }
 
-    public Advisor(String firstName, String lastName, String address, String phone, String email,
-            List<Client> clients) {
+    public Client(String firstName, String lastName, String address, String phone, String email,
+            List<Portfolio> portfolios) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
         this.phone = phone;
         this.email = email;
-        this.clients = clients;
+        this.portfolios = portfolios;
     }
 
-    public long getAdvisorId() {
-        return advisorId;
+    public long getClientId() {
+        return clientId;
     }
 
     public String getFirstName() {
         return firstName;
     }
 
-    public String getLastName() {
-        return lastName;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public List<Client> getClients() {
-        return clients;
-    }
-
     public void setFirstName(String firstName) {
         this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
     }
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getPhone() {
+        return phone;
     }
 
     public void setPhone(String phone) {
         this.phone = phone;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
     public void setEmail(String email) {
         this.email = email;
     }
 
-    public void setClients(List<Client> clients) {
-        this.clients = clients;
+    public List<Portfolio> getPortfolios() {
+        return portfolios;
+    }
+
+    public void setPortfolios(List<Portfolio> portfolios) {
+        this.portfolios = portfolios;
     }
 
 }
